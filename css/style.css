@@ -1,0 +1,230 @@
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: 'PT Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  cursor: default;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.container {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin: 0;
+  padding: 0;
+}
+
+.promo {
+  background-color: rgb(98%, 82%, 0%, 0.7);
+}
+
+.promo__container {
+  padding: 140px 350px 160px 40px;
+  background-image: url("../img/background.png");
+  background-size: 350px 350px;
+  background-position: right 140px;
+  background-repeat: no-repeat; 
+}
+
+.promo__title {
+  margin: 0;
+  margin-bottom: 44px;
+  font-family: 'Amatic SC', cursive;
+  color: #333333;
+  font-size: 54px;
+  line-height: 64px;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.promo__content {
+  margin: 0;
+  margin-bottom: 12px;
+  padding: 0 100px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.control-panel__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+}
+
+.control-panel__item {
+  width: 50%;
+  background-size: 80px 80px;
+  background-position: center top;
+  background-repeat: no-repeat;  
+}
+
+.control-panel__item--lamp {
+  background-image: url("../img/cross.png");
+}
+
+.control-panel__item--computer {
+  background-image: url("../img/zero.png");
+}
+
+.control-panel__button,
+.game__close {
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+  padding: 8px 0;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Amatic SC', cursive;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #ffffff;
+  background-image: url("../img/button.png");
+  background-size: 255px auto;
+  background-position: center top;
+  background-repeat: no-repeat;  
+}
+
+.control-panel__button:hover,
+.control-panel__button:focus,
+.game__close:hover,
+.game__close:focus {
+  transform: scale(1.1);
+  background-image: url("../img/button-hover.png"); 
+  animation-name: button-hover;
+  animation-duration: 600ms;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes button-hover {
+  from {
+    transform: scale(1);
+    background-image: url("../img/button.png");
+  }
+
+  to {
+    transform: scale(1.1);
+    background-image: url("../img/button-hover.png");
+  }
+}
+
+.game__container {
+  padding: 80px 40px;
+}
+
+.control-panel {
+  margin-bottom: 80px;
+  display: block;
+}
+
+.control-panel--close {
+  display: none;
+}
+
+.control-panel__title {
+  margin: 0 auto 60px;
+  font-family: 'Amatic SC', cursive;
+  color: #333333;
+  font-size: 36px;
+  line-height: 40px;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.game__wrap {
+  display: none;
+}
+
+.game__wrap--show {
+  display: block;
+}
+
+.game__step {
+  margin: 0;
+  margin-bottom: 12px;
+  color: #333333;
+  font-size: 36px;
+  line-height: 40px;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+}
+
+.playing {
+  list-style: none;
+  padding: 0;
+  width: 150px;
+  height: 150px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-image: url("../img/playing-field.png");
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.playing__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  color: #333333;
+  font-size: 36px;
+  line-height: 40px;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+}
+
+.playing__item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.active {
+  color: red;
+}

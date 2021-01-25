@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Игра "Крестики-нолики"</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Игра крестики-нолики, для двух игроков или против компьютера">
+    <meta name="Keywords" content="игра, крестики, нолики, крестики-нолики, онлайн-игра">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+    <!-- <header class="page-header">
+      <div class="page-header__container container">
+      </div>
+    </header> -->
+    <main class="page-main">
+      <section class="page-main__promo promo">
+        <div class="promo__container container">
+          <h1 class="promo__title">Онлайн игра "Крестики-нолики"</h1>
+          <p class="promo__content">Это любимая игра всех школьников на переменках и не только. Вы будете соревноваться с компьютером или друзьями. Выбор только за вами! Чтобы стать чемпионом вам нужно включить смекалку и сообразительность. Именно эти качества будут вашими лучшими соратниками в этой логической игре.</p>
+          <p class="promo__content">Один из игроков будет ходить крестиками, а другой — ноликами. Крестики ходят первыми. Суть игры состоит в том, что нужно поставить три своих значка по вертикали, горизонтали или диагонали. Попытайтесь обмануть соперника и сделать так, чтобы следующий шаг дал вам возможность в один ход победить противника в любой комбинации. Приятной игры и удачи!</p>
+        </div>
+      </section>
+      <section class="page-main__game game">
+        <div class="game__container container">
+          <div class="game__control-panel control-panel">
+            <h2 class="control-panel__title">Начать игру!</h2>
+            <ul class="control-panel__list">
+              <li class="control-panel__item">
+                <button class="control-panel__button control-panel__button--user" type="button">2 игрока</button>
+              </li>
+              <li class="control-panel__item">
+                <button class="control-panel__button control-panel__button--computer" type="button">Против компьютера</button>
+              </li>
+            </ul>
+          </div>
+          <div class="game__wrap">
+            <p class="game__step">Ходит игрок X</p>
+            <ul class="game__playing playing" id="playing">
+              <li class="playing__item" data-cell="1"></li>
+              <li class="playing__item" data-cell="2"></li>
+              <li class="playing__item" data-cell="3"></li>
+              <li class="playing__item" data-cell="4"></li>
+              <li class="playing__item" data-cell="5"></li>
+              <li class="playing__item" data-cell="6"></li>
+              <li class="playing__item" data-cell="7"></li>
+              <li class="playing__item" data-cell="8"></li>
+              <li class="playing__item" data-cell="9"></li>
+            </ul>
+            <button class="game__close" type="button">Завершить игру</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="js/main.js"></script>
+</html>
