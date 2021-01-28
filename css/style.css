@@ -41,6 +41,27 @@ button {
   margin: 0 auto;
 }
 
+@media (max-width: 1024px) {
+  .container {
+    width: 768px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    width: 320px;
+    margin: 0 auto;
+  }
+}
+
 .page-header {
   margin: 0;
   padding: 0;
@@ -58,6 +79,28 @@ button {
   background-repeat: no-repeat; 
 }
 
+@media (max-width: 1024px) {
+  .promo__container {
+    padding: 140px 250px 160px 40px;
+    background-size: 250px 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo__container {
+    padding: 80px 180px 80px 20px;
+    background-size: 180px 180px;
+    background-position: right 80px;
+  }
+}
+
+@media (max-width: 540px) {
+  .promo__container {
+    padding: 60px 20px 60px 20px;
+    background-image: none;
+  }
+}
+
 .promo__title {
   margin: 0;
   margin-bottom: 44px;
@@ -70,6 +113,21 @@ button {
   text-transform: uppercase;
 }
 
+@media (max-width: 1024px) {
+  .promo__title {
+    margin-bottom: 20px;
+    font-size: 40px;
+    line-height: 54px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo__title {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
 .promo__content {
   margin: 0;
   margin-bottom: 12px;
@@ -80,6 +138,20 @@ button {
   text-align: center;
 }
 
+@media (max-width: 1024px) {
+  .promo__content {
+    margin: 0;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo__content {
+    font-size: 10px;
+    line-height: 14px;
+  }
+}
+
 .control-panel__list {
   list-style: none;
   margin: 0;
@@ -88,11 +160,25 @@ button {
   display: flex;
 }
 
+@media (max-width: 540px) {
+  .control-panel__list {
+    flex-direction: column;
+  }
+}
+
 .control-panel__item {
   width: 50%;
   background-size: 80px 80px;
   background-position: center top;
   background-repeat: no-repeat;  
+}
+
+
+@media (max-width: 540px) {
+  .control-panel__item {
+    width: 100%;
+    margin: 0 auto; 
+  }
 }
 
 .control-panel__item--lamp {
@@ -123,6 +209,17 @@ button {
   background-size: 255px auto;
   background-position: center top;
   background-repeat: no-repeat;  
+}
+
+@media (max-width: 768px) {
+  .control-panel__button,
+  .game__close {
+    width: 200px;
+    padding: 6px 0;
+    font-size: 20px;
+    line-height: 24px;
+    background-size: 200px auto; 
+  }
 }
 
 .control-panel__button:hover,
