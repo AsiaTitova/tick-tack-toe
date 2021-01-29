@@ -51,8 +51,6 @@
 
   const onCurrentCellWithBot = (evt) => {
     if (!evt.target.textContent) {
-      console.log(board);
-      console.log(cellList);
       let num = +evt.target.getAttribute('data-cell');
       board[num] = humanPlayer;
     
