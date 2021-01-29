@@ -2,15 +2,13 @@
 
 (function () {
   
-  const container = document.querySelector(".game__playing");
   const field = document.querySelector('.game__wrap');
   const controlPanel = document.querySelector('.control-panel');
   const cells = document.querySelectorAll('.playing__item');
   const stepName = document.querySelector('.game__step');
   let stepCount = 0;
-  let board, cellList;
-  let origCellList = [];
-  let origBoard = [];
+  let board = [];
+  let cellList = [];
   
   const humanPlayer = 'X';
   const aiPlayer = 'O';
@@ -18,6 +16,7 @@
   // игра с компьютером // 
   
   const setCellList = () => {
+    let origCellList = [];
     cells.forEach(function (cell) {
       origCellList.push(cell);      
     })
@@ -25,6 +24,7 @@
   }
 
   const setNewBoard = () => {
+    let origBoard = [];
     cells.forEach(function (cell) {
       origBoard.push(cell.getAttribute("data-cell"));      
     })
@@ -36,7 +36,9 @@
     window.utils.addClass(controlPanel, 'control-panel--close');
     cellList = setCellList();
     board = setNewBoard();
-    container.addEventListener('click', onCurrentCellWithBot);
+    cells.forEach(function (cell) {
+      cell.addEventListener('click', onCurrentCellWithBot);
+    });
   }
 
   // находим пустые ячейки //
@@ -47,97 +49,101 @@
 
   // алгоритм игры с компьютером //
 
-
-
   const onCurrentCellWithBot = (evt) => {
-    let num = +evt.target.getAttribute('data-cell');
-    board[num] = humanPlayer;
-    evt.target.innerText = 'X';
-    evt.target.style = 'color: #00dffc';
-    if (checkWinner(board, humanPlayer)) {
-      return (stepName.textContent = 'Вы победили!');      
-    }  
-    const bestMove = minimax(board, aiPlayer);
-    board[bestMove.index] = aiPlayer;
-    if (cellList[bestMove.index] !== undefined) {
-      cellList[bestMove.index].innerText = aiPlayer;
-    } else {
-      return (stepName.textContent = 'Ничья');
-    }
-    if (checkWinner(board, aiPlayer)) {
-      return (stepName.textContent = 'Победил Компьютер');      
+    if (!evt.target.textContent) {
+      console.log(board);
+      console.log(cellList);
+      let num = +evt.target.getAttribute('data-cell');
+      board[num] = humanPlayer;
+    
+      evt.target.innerText = 'X';
+      evt.target.style = 'color: #00dffc';
+      if (checkWinner(board, humanPlayer)) {
+        return (stepName.textContent = 'Вы победили!');      
+      }
+      const bestMove = minimax(board, aiPlayer);
+      board[bestMove.index] = aiPlayer;
+      if (cellList[bestMove.index] !== undefined) {
+        cellList[bestMove.index].innerText = aiPlayer;
+        cellList[bestMove.index].style = 'color: rgb(98%, 82%, 0%, 1)';
+      } else {
+        return (stepName.textContent = 'Ничья');
+      }
+      if (checkWinner(board, aiPlayer)) {
+        return (stepName.textContent = 'Победил Компьютер');      
+      }
     }
   }
 
   const minimax = (newBoard, player) => {
-  // шаги игры //
-  stepCount++;
-  
-  // доступные клетки //
-  let emptyCells = findEmptyCells(newBoard);
+    // шаги игры //
+    stepCount++;
+    
+    // доступные клетки //
+    let emptyCells = findEmptyCells(newBoard);
 
-  // проверка на терминальное состояние (победа / поражение / ничья) //
-  if (checkWinner(newBoard, humanPlayer)){
-    return {
-      score: -10
+    // проверка на терминальное состояние (победа / поражение / ничья) //
+    if (checkWinner(newBoard, humanPlayer)){
+      return {
+        score: -10
+      }
+    } else if (checkWinner(newBoard, aiPlayer)) {
+      return {
+        score: 10
+      }
+    } else if (emptyCells.length === 0) {
+      return {
+        score: 0
+      }
     }
-  } else if (checkWinner(newBoard, aiPlayer)) {
-    return {
-      score: 10
+
+    // создаем массив для хранения всех движений //
+    let moves = [];
+
+    // цикл по доступным клеткам //
+    for (let i = 0; i < emptyCells.length; i++) {
+      let move = {};
+      move.index = newBoard[emptyCells[i]];
+
+      // совершить ход за текущего игрока //
+      newBoard[emptyCells[i]] = player;
+
+      //получить очки, заработанные после вызова минимакса от противника текущего игрока //
+      if (player == aiPlayer) {
+        let result = minimax(newBoard, humanPlayer);
+        move.score = result.score;
+      } else {
+        let result = minimax(newBoard, aiPlayer);
+        move.score = result.score;
+      }
+
+      // очистить клетку //
+      newBoard[emptyCells[i]] = move.index;
+
+      // положить объект в массив //
+      moves.push(move);
     }
-	} else if (emptyCells.length === 0) {
-  	return {
-      score: 0
-    }
-  }
 
-  // создаем массив для хранения всех движений //
-  let moves = [];
-
-  // цикл по доступным клеткам //
-  for (let i = 0; i < emptyCells.length; i++) {
-    let move = {};
-  	move.index = newBoard[emptyCells[i]];
-
-    // совершить ход за текущего игрока //
-    newBoard[emptyCells[i]] = player;
-
-    //получить очки, заработанные после вызова минимакса от противника текущего игрока //
-    if (player == aiPlayer) {
-      let result = minimax(newBoard, humanPlayer);
-      move.score = result.score;
+    let bestMove;
+    if (player === aiPlayer) {
+      let bestScore = -Infinity;
+      for (let i = 0; i < moves.length; i++) {
+        if (moves[i].score > bestScore) {
+          bestScore = moves[i].score;
+          bestMove = i;
+        }
+      }
     } else {
-      let result = minimax(newBoard, aiPlayer);
-      move.score = result.score;
-    }
-
-    // очистить клетку //
-    newBoard[emptyCells[i]] = move.index;
-
-    // положить объект в массив //
-    moves.push(move);
-  }
-
-  let bestMove;
-  if (player === aiPlayer) {
-    let bestScore = -Infinity;
-    for (let i = 0; i < moves.length; i++) {
-      if (moves[i].score > bestScore) {
-        bestScore = moves[i].score;
-        bestMove = i;
+      let bestScore = +Infinity;
+      for (let i = 0; i < moves.length; i++) {
+        if(moves[i].score < bestScore){
+          bestScore = moves[i].score;
+          bestMove = i;
+        }
       }
     }
-  } else {
-    let bestScore = +Infinity;
-    for (let i = 0; i < moves.length; i++) {
-      if(moves[i].score < bestScore){
-        bestScore = moves[i].score;
-        bestMove = i;
-      }
-    }
-  }
 
-  return moves[bestMove];
+    return moves[bestMove];
   }
 
   const checkWinner = (board, player) => {

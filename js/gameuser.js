@@ -101,8 +101,9 @@
   const closeGame = () => {
     window.utils.removeClass(field, 'game__wrap--show');
     window.utils.removeClass(controlPanel, 'control-panel--close');
-    cells.forEach(function (cell) {
+    cells.forEach(function (cell, index) {
       cell.innerText = '';
+      cell.setAttribute('data-cell', index);
     });
     dataO = [];
     dataX = [];
